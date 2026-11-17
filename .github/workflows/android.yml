@@ -30,6 +30,11 @@ jobs:
         run: |
           yes | sdkmanager --licenses || true
           sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+      - name: Remove misplaced upload files
+        run: |
+          find app/src/main/res/layout -type f ! -name '*.xml' -delete
+          find app/src/main/res/layout/app -type f -delete 2>/dev/null || true
+          find app/src/main/res/layout/app -type d -empty -delete 2>/dev/null || true
       - name: Build APK
         run: gradle assembleDebug --stacktrace
       - name: Rename APK
