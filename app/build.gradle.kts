@@ -9,7 +9,7 @@ android { namespace = "com.smartprayertimes.app"; compileSdk = 35
 }
 
 dependencies {
-    val compose = "2024.12.01"
+    val compose = "1.7.6"
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.activity:activity-compose:1.10.0")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
