@@ -2,11 +2,13 @@ package com.smartprayertimes.app
 
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import kotlin.math.*
 
 data class Prayer(val name: String, val time: LocalTime)
 
 object PrayerCalculator {
+    fun formatTime(time: LocalTime, is24: Boolean): String = time.format(DateTimeFormatter.ofPattern(if (is24) "HH:mm" else "hh:mm a"))
     fun calculate(lat: Double, lon: Double, zone: String, date: LocalDate = LocalDate.now()): List<Prayer> {
         val n = date.dayOfYear.toDouble(); val decl = Math.toRadians(23.44 * sin(Math.toRadians(360.0 / 365.0 * (n - 81))))
         val latitude = Math.toRadians(lat); val tz = java.time.ZoneId.of(zone).rules.getOffset(date.atStartOfDay()).totalSeconds / 3600.0
